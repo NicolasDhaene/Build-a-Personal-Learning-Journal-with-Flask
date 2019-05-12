@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="entry-list">
+            {% if current_user.is_authenticated %}
+                {% if entries.count() %}    
+                    {% for entry in entries %}
+                        <article>
+                            <i>{{ entry.date.strftime("%B %d %Y") }}</i>
+                            <br>
+                            <b><a href="/entries/{{entry.slug }}">{{ entry.title }}</a></b>
+                            <br>
+                            <div class="tags"> 
+                                {% for each in entry.tags %} 
+                                <div class="tag">
+                                <a href="/filter/{{each.name}}">{{each.name}}</a>
+                                </div>
+                                {% endfor %}
+                            </div>  
+                        </article>
+                    {% endfor %}
+                {% else %}
+                    <p> No entry yet </p>
+                {% endif %}
+            {% else %}
+                <p> Login or register to see entries </p>
+            {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="entry-list single">
+                <article>
+                    <h1>{{detail.title}}</h1>
+                    <time>{{detail.date.strftime("%B %d %Y")}}</time>
+                    <div class="tags"> 
+                                {% for each in detail.tags %} 
+                                <div class="tag">
+                                <a href="/filter/{{each.name}}">{{each.name}}</a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                    <div class="entry">
+                        <h3>Time Spent: </h3>
+                        <p>{{detail.time_spent}} Minutes</p>
+                    </div>
+                    <div class="entry">
+                        <h3>What I Learned:</h3>
+                        <p>{{detail.material}}</p>
+                    </div>
+                    <div class="entry">
+                        <h3>Resources to Remember:</h3>
+                        <p>{{detail.resource}}</p>                        
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div class="edit">
+            <p><a href="/entries/{{detail.slug }}/edit">Edit Entry</a></p>
+            <p><a href="/entries/{{detail.slug }}/delete">Delete Entry</a></p>
+        </div>
+    </section>
+{% endblock %}

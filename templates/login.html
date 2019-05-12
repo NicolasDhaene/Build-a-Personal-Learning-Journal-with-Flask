@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="new-entry">
+                <h2>Login</h2>
+                <form method="POST" action="">
+                    {% for field in form %}
+                        <div class='element'>{{ field(placeholder=field.label.text, class="row") }}</div>
+                    {% endfor %}
+                    <input type="submit" value="Login" class="button">
+                    <a href="{{ url_for('entries') }}" class="button button-secondary">Cancel</a>
+                </form>
+        </div>
+    </section>
+{% endblock %}
